@@ -1,45 +1,29 @@
 const blogSchema = require("../../../schema/blogSchema");
-const Users = require("../../../schema/UsersSchema");
-
-//get-my-blogs
-const get_my_blogs = async (req, res) => {
-  try {
-    
-    let blogs = await blogSchema.find()
-    
-    
-
-    res.status(200).send({
-        success: true,
-        message: "get info users blog",
-        data: blogs
-    })
-  } catch (error) {
-    return res.status(error.status || 500).send({
-      success: false,
-      message: error.message,
-    });
-  }
-};
+const UsersSchema = require("../../../schema/UsersSchema");
+const { verify_mtd } = require("../../../utils/jwt");
 
 // create blog
 const new_blog = async (req, res) => {
   try {
-    let { title, description, author, posts } = req.body;
+    let { title, description, posts } = req.body;
+    let { token } = req.headers;
 
-    let user = await Users.findById(author).select("fullName");
-
-    if (!user) {
-      return res.status(404).send({
+    if (!token) {
+      res.status(404).send({
         success: false,
-        message: "User not found",
+        message:"Login qiling va tokenni kiriting",
       });
+      return;
     }
 
+    let { id } = verify_mtd(token);
+
+    let user = await UsersSchema.findById(id);
+    let author = user.fullName;
     let newBlog = await blogSchema.create({
       title,
       description,
-      author,
+      author: user._id,
       posts,
     });
 
@@ -50,8 +34,8 @@ const new_blog = async (req, res) => {
         id: newBlog._id,
         title: title,
         description: description,
-        author: user.fullName,
         posts: newBlog.posts,
+        author,
         createdAt: newBlog.createdAt,
         updatedAt: newBlog.updatedAt,
       },
@@ -66,5 +50,4 @@ const new_blog = async (req, res) => {
 
 module.exports = {
   new_blog,
-  get_my_blogs
 };

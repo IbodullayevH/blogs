@@ -1,4 +1,4 @@
-const { Schema, model, Types, } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 
 const blogSchema = new Schema(
   {
@@ -11,9 +11,13 @@ const blogSchema = new Schema(
       required: true,
     },
     author: {
-      type:String,
-      
+      type: String,
     },
+    blog_members:[ {
+      type:Types.ObjectId,
+      ref: "User"
+    }],
+
     posts: [
       {
         type: Types.ObjectId,
@@ -23,7 +27,7 @@ const blogSchema = new Schema(
   },
   { timestamps: true },
   {
-    Collection:"Blogs"
+    Collection: "Blogs",
   }
 );
 

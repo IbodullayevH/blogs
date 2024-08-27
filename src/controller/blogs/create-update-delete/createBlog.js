@@ -11,7 +11,7 @@ const new_blog = async (req, res) => {
     if (!token) {
       res.status(404).send({
         success: false,
-        message:"Login qiling va tokenni kiriting",
+        message: "Login qiling va tokenni kiriting",
       });
       return;
     }
@@ -48,6 +48,45 @@ const new_blog = async (req, res) => {
   }
 };
 
+// /join-blog
+const join_blog = async (req, res) => {
+  try {
+    let { blogId } = req.body;
+    let { token } = req.headers;
+
+    if (!token) {
+      res.status(404).send({
+        success: false,
+        message: "Login qiling va tokenni kiriting",
+      });
+      return;
+    }
+
+    let { id } = verify_mtd(token);
+
+    let user = await UsersSchema.findById(id);
+    // console.log(user);
+
+    let checkBlogById = await blogSchema.findById(blogId);
+    checkBlogById.blog_members.push(user._id);
+    checkBlogById.save();
+
+    res.status(201).send({
+      success: true,
+      message: ` ${user.fullName} siz: '${checkBlogById.title}' blogiga qo'shildingiz`,
+      blog_author: await UsersSchema.findById(checkBlogById.author).select(
+        "fullName"
+      ),
+    });
+  } catch (error) {
+    res.status(error.status || 500).send({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 module.exports = {
   new_blog,
+  join_blog,
 };

@@ -1,3 +1,50 @@
 jon: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Y2Q5NzZlZjk0MmJjZDZiMjYxZTNkZiIsInVzZXJOYW1lIjoiSm9uX1NoZWlraDc3NyIsImlhdCI6MTcyNDc0OTY4N30.fGwZTj_d3VnD3QKqAL-QBG1z3lgpttUrOePlE-9x3HI
 
 tosh: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Y2Q5YjUxYWQ0N2VmMGY5ZjllZGM2ZSIsImlhdCI6MTcyNDc1MDcxMn0.oau01co5upGTTeCpnBh7HSJtSTnzur8S2vaEQy7kbRQ
+
+esh: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Y2UwZjczYWYwYzA4MWVlYzU1NjRkNSIsImlhdCI6MTcyNDc4MDQyMX0.0pDbKEaqDT068P1hMBhlX15_yow-X4ZahtUkXsYW6J4
+
+
+
+------------------------------------------------------------------------------------------------------
+6-oy Amaliy vazifa
+
+Jadvallar: users, blogs, posts, comments.
+
+Users: 
+  	/register - register qilish
+	/login - login qilish
+
+Blogs: 
+	/create - Blog yaratish
+	/get-my-blogs - Bloglarni olish. O’ziga tegishli bo’lgan
+    /get-my-joined-blogs - Bloglarni olish. O’zi a’zo bo’lgan
+	/get-blog-info - Idsi bo’yicha blog haqida batafsil ma’lumot.
+	/update - Update qilish. Faqat o’zi yaratganini update qilolsin
+	/delete - o’chirish. Faqat o’zini blogini o’chirolishi kerak.
+/search - blog username bilan global qidirish. Barcha bloglarni ichidan.
+/join-blog - Blogga a’zo bo’lish.
+/leave-blog - Blogdan chiqib ketish.
+/get-users - Blog a’zolarini olish.
+
+Posts: 
+	/create - Blog egasi post qila olishi mumkin.
+	/get-all - Blogning barcha postlarini olish. Blog idsi bo’yicha.
+	/get-by-id . Postni idsi bo’yicha olish. Har get bo’lganda view 1 taga oshirilishi kerak.
+	/update - Update qilish. Blog egasi qila oladi.
+	/delete - Delete qilish. Blog egasi qila oladi.
+	/sort-by-date - eng oxirgilari bo’yicha sort qilish. Blog idsi orqali olinadi.
+	/get-comments - Postga yozilgan izohlar.
+
+
+Comments: 
+	/create - Postga izoh yozish.
+	/update - Update qilish
+	/delete - Delete qilish.
+
+Barcha user ning idsi kerak bo’ladigan routelarda tokendan olinishi kerak id. 
+
+
+
+ 
+	
